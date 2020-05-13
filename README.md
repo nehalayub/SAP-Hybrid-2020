@@ -1,6 +1,6 @@
-# SAP Commerce Cloud Sample Repository
+# SAP Commerce Cloud with Data Hub Sample Repository
 
-This sample repository contains the files and folders that are required to set up SAP Commerce Cloud. There are multiple branches covering different scenarios for Commerce Cloud (e.g. project Spartacus, data hub, solr customizations).  You can clone/download this repository, checkout the branch of interest and then follow the instructions in the readme to update the example files with your specific details. 
+This sample repository contains the files and folders that are required to set up SAP Commerce Cloud with Data Hub.  You can clone this repository and then follow the instructions in the readme to update the example files with your specific details. 
 
 When your files are ready, push them to your SAP Commerce Cloud repository.  
 
@@ -8,7 +8,8 @@ When your files are ready, push them to your SAP Commerce Cloud repository.
 
 - You have a public-facing code repository.
 - You have an active SAP Commerce Cloud subscription.
-- You have a license for SAP Commerce version 1808 or higher.
+- You have a license for SAP Commerce 6.7 or higher
+- You have a license for Data Hub on Commerce Cloud version 6.7 or higher.
 - You have not set up SAP Commerce Cloud yet.
 
 # Supported Versions
@@ -26,11 +27,18 @@ The following folders and files are included in the sample repository.
 
 Root level 
 - core-customize folder: The folder that contains all of the folders and files that support Commerce Cloud.
+- datahub folder: The folder that contains all of the folders and files that support Data Hub.
 
 core-customize folder
 - manifest.json: The Commerce Cloud manifest.json file, which defines how your code will be built and deployed in the Public Cloud environments. The manifest is set up to leverage [configuration reuse](https://help.sap.com/viewer/1be46286b36a4aa48205be5a96240672/SHIP/en-US/2311d89eef9344fc81ef168ac9668307.html) to better allow for consistency between local and cloud builds.
 - hybris folder: contains a sample custom folder for storing any custom extensions as well as the config folder for storing local and cloud properties, localextensions.xml and any local solr/tomcat configurations
 - other sample manifests: A collection of tested and verified manifest files that you can use as starting points for your Commerce Cloud environments.
+
+datahub folder
+- manifest.json: The Data Hub manifest.json file that defines the Data Hub application and extensions.
+- ccv2 example folder: A generic folder that you can build out for custom extensions.
+- config folder: The folder that contains the Data Hub configuration files and folders.
+- README.md: Specific readme for Data Hub specific configuration.
 
 ### Clone Repository
 
@@ -50,12 +58,17 @@ Clone the sample repository ([instructions can be found here](https://help.githu
 
 ### Prepare to Push the Sample Repository
  
-In the sample repository, verify that you have the following files in the core-customize folder.
+1. In the sample repository, verify that you have the following files in the *core-customize* folder.
  - manifest.json:  This is the manifest.json for Commerce Cloud.
- 
+ - \<custom extension> folders (optional)
+2. Verify that you have the following files in the *datahub* folder.
+ - manifest.json: This is the manifest.json for Data Hub.
+ - \<config> folder: This is the folder which contains configuration information specific to Data Hub (see [Data Hub](datahub/README.md) readme for details). 
+ - \<custom extension> folders (optional)
+
 ### Push the Commerce Cloud Configuration to Code Repository
 
-Push all the contents from your local machine to the root level of your Commerce Cloud repository.
+Push the core-customize & datahub folder from your local machine to the root level of your Commerce Cloud repository.  
 
 ### Access the Cloud Portal
 
@@ -65,7 +78,7 @@ Log in to the Cloud Portal and verify that your code repository is connected.
 2. Select *Repository* and verify that you are connected to the correct code repository.
 3. Find the environments that were provisioned for your subscription.
 3. Create a new build.
-4. Deploy the build to the environment using the *Initialze Database* option.
+4. Deploy the build to the environment using the *Initialize Database* option.
 
 You may also wish to see [this video](https://enable.cx.sap.com/playlist/dedicated/116161351/1_6tm85g61/1_df6ptanl) which provides a walkthrough of how to connect your repository, as well as [this video](https://enable.cx.sap.com/playlist/dedicated/116161351/1_6tm85g61/1_9ogbv7hz) which outlines how to build and deploy
 
@@ -80,6 +93,8 @@ Use the Cloud Portal to create a build and then deploy the build to an environme
 5. Click on the URL listed next to the *Storefront* public endpoint. You will receive a server error.
 6. In your browser's address, append the endpoint address with */?site=electronics* and reload the page
 7. Verify that you see a basic electronics storefront.
+
+After the build is deployed, you can find the Data Hub endpoint in the Environments page of the Cloud Portal.
 
 # Limitations
 
